@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Simple Tides</title>
+  <meta name="description" content="Learn what Simple Tides offers: map-first NOAA station discovery, tide charts, weather, marine conditions, and solunar insights.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://simple-tides.com/about.html">
+  <style>
+    :root {
+      --bg-top: #dff5fc;
+      --bg-bottom: #f4fbff;
+      --ink: #0a2f45;
+      --ink-soft: #48697c;
+      --surface: rgba(255, 255, 255, 0.9);
+      --line: rgba(11, 47, 67, 0.14);
+      --accent: #0f86b9;
+      --shadow: 0 18px 44px rgba(14, 62, 88, 0.16);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(125, 200, 231, 0.45), transparent 25%),
+        radial-gradient(circle at 88% 16%, rgba(15, 134, 185, 0.2), transparent 26%),
+        linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+      padding: 20px;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 { margin-top: 0; }
+    p, li { line-height: 1.5; color: var(--ink-soft); }
+
+    a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>About Simple Tides</h1>
+    <p>Simple Tides is a map-first marine planning app focused on quick station discovery and practical on-water timing insights.</p>
+
+    <h2>Core Features</h2>
+    <ul>
+      <li>Nearby NOAA station discovery on an interactive map</li>
+      <li>Upcoming high and low tide timeline</li>
+      <li>Tide chart preview for selected stations</li>
+      <li>Weather, marine, and solunar context</li>
+      <li>Location-aware route timing and map centering</li>
+    </ul>
+
+    <h2>Data Sources</h2>
+    <p>Simple Tides aggregates publicly available data from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense.</p>
+
+    <p><a href="/">Back to Simple Tides</a></p>
+  </main>
+</body>
+</html>

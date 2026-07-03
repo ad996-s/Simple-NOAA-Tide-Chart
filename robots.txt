@@ -1,5 +1,18 @@
+# Simple Tides crawler directives
+# Keep primary pages fully crawlable for search indexing.
+
 User-agent: *
 Allow: /
 
-# Keep sitemap discoverable for search engines.
+# Explicitly confirm allowed crawling for major engines.
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Canonical sitemap location.
 Sitemap: https://simple-tides.com/sitemap.xml
