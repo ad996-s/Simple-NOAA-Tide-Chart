@@ -223,71 +223,6 @@
       white-space: nowrap;
     }
 
-    .saved-wrap {
-      position: relative;
-    }
-
-    .saved-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      width: min(360px, calc(100vw - 44px));
-      max-height: 360px;
-      overflow: auto;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--surface-strong);
-      box-shadow: var(--shadow);
-      padding: 10px;
-      z-index: 30;
-      display: grid;
-      gap: 10px;
-    }
-
-    .saved-section {
-      display: grid;
-      gap: 6px;
-    }
-
-    .saved-title {
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      font-weight: 800;
-    }
-
-    .saved-list {
-      display: grid;
-      gap: 6px;
-    }
-
-    .saved-item {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--surface);
-      color: var(--ink);
-      padding: 7px 10px;
-      font: inherit;
-      text-align: left;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .saved-item small {
-      display: block;
-      color: var(--ink-soft);
-      font-size: 11px;
-      margin-top: 2px;
-    }
-
-    .saved-empty {
-      font-size: 12px;
-      color: var(--ink-soft);
-      padding: 2px 1px;
-    }
-
     .chip-btn:hover,
     .chip-select:hover {
       transform: translateY(-1px);
@@ -431,16 +366,6 @@
       background: var(--surface-strong);
       border-radius: 999px;
       padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .fav-btn {
-      border: 1px solid var(--line);
-      background: var(--surface-strong);
-      border-radius: 999px;
-      padding: 8px 10px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
@@ -592,19 +517,6 @@
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .detail-grid { grid-template-columns: 1fr; }
       .search { order: 3; width: 100%; }
-      .saved-wrap {
-        order: 4;
-        margin-left: 0;
-      }
-      .saved-panel {
-        position: fixed;
-        left: 12px;
-        right: 12px;
-        top: auto;
-        bottom: 12px;
-        width: auto;
-        max-height: min(52vh, 420px);
-      }
     }
   </style>
 </head>
@@ -626,19 +538,6 @@
         <input id="stationSearch" list="citySuggestions" type="text" placeholder="Search city or station (e.g. Monterey)">
         <datalist id="citySuggestions"></datalist>
       </div>
-      <div class="saved-wrap">
-        <button id="savedBtn" class="chip-btn" type="button" aria-expanded="false" aria-controls="savedPanel">Saved</button>
-        <section id="savedPanel" class="saved-panel" hidden aria-label="Saved and recent locations">
-          <div class="saved-section">
-            <div class="saved-title">Favorites</div>
-            <div id="favoritesList" class="saved-list"></div>
-          </div>
-          <div class="saved-section">
-            <div class="saved-title">Recent</div>
-            <div id="recentsList" class="saved-list"></div>
-          </div>
-        </section>
-      </div>
       <button id="themeBtn" class="chip-btn" type="button">Dark</button>
       <button id="locBtn" class="chip-btn" type="button">Use My Location</button>
     </header>
@@ -648,6 +547,7 @@
         <div id="map"></div>
         <div class="map-overlay">
           <div class="group">
+            <span class="map-tag">Hybrid</span>
             <select id="radiusSelect" class="chip-select" aria-label="Radius">
               <option value="5">5 mi radius</option>
               <option value="10" selected>10 mi radius</option>
@@ -689,8 +589,6 @@
     ];
 
     const THEME_STORAGE_KEY = "simpleTidesTheme";
-    const FAVORITES_STORAGE_KEY = "simpleTidesFavorites";
-    const RECENTS_STORAGE_KEY = "simpleTidesRecentLocations";
 
     const state = {
       map: null,
@@ -707,10 +605,7 @@
       selectedStation: null,
       isLoadingDetail: false,
       theme: "light",
-      suggestionTimer: null,
-      favorites: [],
-      recents: [],
-      savedPanelOpen: false
+      suggestionTimer: null
     };
 
     const stationCountEl = document.getElementById("stationCount");
@@ -719,149 +614,6 @@
     const detailEl = document.getElementById("detail");
     const citySuggestionsEl = document.getElementById("citySuggestions");
     const themeBtnEl = document.getElementById("themeBtn");
-    const savedBtnEl = document.getElementById("savedBtn");
-    const savedPanelEl = document.getElementById("savedPanel");
-    const favoritesListEl = document.getElementById("favoritesList");
-    const recentsListEl = document.getElementById("recentsList");
-
-    function stationFromLocation(location) {
-      return {
-        id: location.stationID || location.id || String(location.key || ""),
-        name: location.name || location.label || "Saved location",
-        lat: Number(location.lat),
-        lon: Number(location.lon),
-        noaaStationID: location.stationID || location.id || String(location.key || "")
-      };
-    }
-
-    function persistSavedLocations() {
-      try {
-        localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(state.favorites));
-        localStorage.setItem(RECENTS_STORAGE_KEY, JSON.stringify(state.recents));
-      } catch {
-        // Ignore storage failures in private/restricted browsing contexts.
-      }
-    }
-
-    function loadSavedLocations() {
-      try {
-        const rawFav = localStorage.getItem(FAVORITES_STORAGE_KEY);
-        const rawRecent = localStorage.getItem(RECENTS_STORAGE_KEY);
-        const favRows = rawFav ? JSON.parse(rawFav) : [];
-        const recentRows = rawRecent ? JSON.parse(rawRecent) : [];
-        state.favorites = Array.isArray(favRows) ? favRows : [];
-        state.recents = Array.isArray(recentRows) ? recentRows : [];
-      } catch {
-        state.favorites = [];
-        state.recents = [];
-      }
-    }
-
-    function isFavoriteStation(stationID) {
-      return state.favorites.some((entry) => String(entry.stationID) === String(stationID));
-    }
-
-    function setSavedPanelOpen(open) {
-      state.savedPanelOpen = open;
-      savedPanelEl.hidden = !open;
-      savedBtnEl.setAttribute("aria-expanded", String(open));
-    }
-
-    function addRecentLocation(entry) {
-      const key = String(entry.key || "").trim();
-      if (!key) { return; }
-      const normalized = {
-        key,
-        kind: entry.kind || "location",
-        label: entry.label || "Saved location",
-        lat: Number(entry.lat),
-        lon: Number(entry.lon),
-        stationID: entry.stationID || null,
-        timestamp: Date.now()
-      };
-      if (Number.isNaN(normalized.lat) || Number.isNaN(normalized.lon)) { return; }
-
-      state.recents = state.recents.filter((row) => row.key !== normalized.key);
-      state.recents.unshift(normalized);
-      state.recents = state.recents.slice(0, 10);
-      persistSavedLocations();
-      renderSavedLists();
-    }
-
-    function toggleFavoriteStation(station) {
-      const stationID = String(station.noaaStationID || station.id || "").trim();
-      if (!stationID) { return; }
-
-      const idx = state.favorites.findIndex((entry) => String(entry.stationID) === stationID);
-      if (idx >= 0) {
-        state.favorites.splice(idx, 1);
-      } else {
-        state.favorites.unshift({
-          stationID,
-          name: station.name || `Station ${stationID}`,
-          lat: Number(station.lat),
-          lon: Number(station.lon),
-          timestamp: Date.now()
-        });
-        state.favorites = state.favorites.slice(0, 16);
-      }
-      persistSavedLocations();
-      renderSavedLists();
-    }
-
-    function goToSavedLocation(location) {
-      const lat = Number(location.lat);
-      const lon = Number(location.lon);
-      if (Number.isNaN(lat) || Number.isNaN(lon)) { return; }
-
-      state.map.setView([lat, lon], 11, { animate: true });
-      if (location.stationID) {
-        const station = state.stations.find((s) => String(s.noaaStationID) === String(location.stationID)) || stationFromLocation(location);
-        selectStation(station);
-      } else {
-        mapStatusEl.textContent = `Centered on ${location.label}`;
-      }
-      setSavedPanelOpen(false);
-    }
-
-    function createSavedItem(location) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "saved-item";
-      const subtitle = location.kind === "station" ? "Station" : (location.kind === "city" ? "City" : "Location");
-      btn.innerHTML = `${location.label}<small>${subtitle}</small>`;
-      btn.addEventListener("click", () => goToSavedLocation(location));
-      return btn;
-    }
-
-    function renderSavedLists() {
-      favoritesListEl.innerHTML = "";
-      recentsListEl.innerHTML = "";
-
-      if (!state.favorites.length) {
-        favoritesListEl.innerHTML = '<div class="saved-empty">Star a station in the details panel to save it.</div>';
-      } else {
-        state.favorites.forEach((fav) => {
-          const row = {
-            key: `station:${fav.stationID}`,
-            kind: "station",
-            label: fav.name,
-            lat: fav.lat,
-            lon: fav.lon,
-            stationID: fav.stationID
-          };
-          favoritesListEl.appendChild(createSavedItem(row));
-        });
-      }
-
-      if (!state.recents.length) {
-        recentsListEl.innerHTML = '<div class="saved-empty">Recent locations will appear as you browse.</div>';
-      } else {
-        state.recents.forEach((recent) => {
-          recentsListEl.appendChild(createSavedItem(recent));
-        });
-      }
-    }
 
     const TILESETS = {
       light: {
@@ -1108,13 +860,6 @@
       state.userMarker.setLatLng([state.userLocation.lat, state.userLocation.lon]);
       state.radiusCircle.setLatLng([state.userLocation.lat, state.userLocation.lon]);
       state.map.setView([state.userLocation.lat, state.userLocation.lon], zoom, { animate });
-      addRecentLocation({
-        key: "device-location",
-        kind: "location",
-        label: "My current location",
-        lat: state.userLocation.lat,
-        lon: state.userLocation.lon
-      });
       renderMarkersInRadius();
     }
 
@@ -1228,13 +973,6 @@
         const lon = Number(first.lon);
         if (Number.isNaN(lat) || Number.isNaN(lon)) { return false; }
         state.map.setView([lat, lon], 11, { animate: true });
-        addRecentLocation({
-          key: `city:${String(first.display_name || q).toLowerCase()}`,
-          kind: "city",
-          label: first.display_name || q,
-          lat,
-          lon
-        });
         mapStatusEl.textContent = `Centered on ${first.display_name || q}`;
         return true;
       } catch {
@@ -1569,10 +1307,7 @@
             <div class="title">${station.name}</div>
             <div class="sub">NOAA ${station.noaaStationID} | Updated ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}</div>
           </div>
-          <div class="group" style="pointer-events:auto;">
-            <button id="favBtn" class="fav-btn" type="button">${isFavoriteStation(station.noaaStationID) ? "Saved" : "Save"}</button>
-            <button id="refreshBtn" class="refresh" type="button">Refresh Station Data</button>
-          </div>
+          <button id="refreshBtn" class="refresh" type="button">Refresh Station Data</button>
         </div>
 
         <div class="metrics">
@@ -1623,15 +1358,8 @@
       `;
 
       const refreshBtn = document.getElementById("refreshBtn");
-      const favBtn = document.getElementById("favBtn");
       if (refreshBtn) {
         refreshBtn.addEventListener("click", () => selectStation(station));
-      }
-      if (favBtn) {
-        favBtn.addEventListener("click", () => {
-          toggleFavoriteStation(station);
-          favBtn.textContent = isFavoriteStation(station.noaaStationID) ? "Saved" : "Save";
-        });
       }
     }
 
@@ -1692,14 +1420,6 @@
           return;
         }
         state.tideDataAvailability.set(station.noaaStationID, true);
-        addRecentLocation({
-          key: `station:${station.noaaStationID}`,
-          kind: "station",
-          label: station.name,
-          lat: station.lat,
-          lon: station.lon,
-          stationID: station.noaaStationID
-        });
         updateDetail(station, data);
       } catch (error) {
         detailEl.innerHTML = `<div class="status">Unable to refresh station data right now. ${String(error.message || "")}</div>`;
@@ -1709,16 +1429,6 @@
     }
 
     function wireControls() {
-      savedBtnEl.addEventListener("click", () => {
-        setSavedPanelOpen(!state.savedPanelOpen);
-      });
-
-      document.addEventListener("click", (event) => {
-        if (!state.savedPanelOpen) { return; }
-        if (savedPanelEl.contains(event.target) || savedBtnEl.contains(event.target)) { return; }
-        setSavedPanelOpen(false);
-      });
-
       radiusSelectEl.addEventListener("change", (e) => {
         state.radiusMiles = Number(e.target.value);
         state.radiusCircle.setRadius(milesToMeters(state.radiusMiles));
@@ -1798,9 +1508,6 @@
     }
 
     async function bootstrap() {
-      loadSavedLocations();
-      renderSavedLists();
-
       let initialTheme = "dark";
       try {
         const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
