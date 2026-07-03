@@ -14,5 +14,11 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
 # Canonical sitemap location.
 Sitemap: https://simple-tides.com/sitemap.xml

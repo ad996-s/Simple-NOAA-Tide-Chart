@@ -5,22 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Tides</title>
   <meta name="description" content="Simple Tides is a map-first tide app for finding nearby NOAA stations, viewing upcoming tides, weather, marine conditions, lunar/light, and bite score insights.">
+  <meta name="author" content="Simple Tides">
+  <meta name="application-name" content="Simple Tides">
+  <meta name="format-detection" content="telephone=no">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#dff5fc">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c1723">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Simple Tides">
   <meta property="og:description" content="Map-first tide forecasts with NOAA stations, weather, marine conditions, and lunar/light insights.">
   <meta property="og:site_name" content="Simple Tides">
+  <meta property="og:url" content="https://simple-tides.com/">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Simple Tides">
   <meta name="twitter:description" content="Map-first tide forecasts with NOAA stations, weather, marine conditions, and lunar/light insights.">
   <link rel="canonical" href="https://simple-tides.com/">
+  <link rel="alternate" hreflang="en" href="https://simple-tides.com/">
+  <link rel="alternate" hreflang="x-default" href="https://simple-tides.com/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://simple-tides.com/sitemap.xml">
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d15c27f720104938aaf37d7300812e5b"}'></script><!-- End Cloudflare Web Analytics -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Simple Tides",
+      "url": "https://simple-tides.com/",
       "applicationCategory": "WeatherApplication",
       "operatingSystem": "Web",
       "description": "Simple Tides helps anglers and boaters find nearby NOAA tide stations, view upcoming tide timelines, weather, marine conditions, and lunar/light details.",
@@ -30,6 +41,24 @@
         "Upcoming tide timeline",
         "Weather and marine conditions",
         "Lunar and light details"
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Simple Tides",
+          "url": "https://simple-tides.com/"
+        },
+        {
+          "@type": "WebSite",
+          "name": "Simple Tides",
+          "url": "https://simple-tides.com/",
+          "inLanguage": "en-US"
+        }
       ]
     }
   </script>
@@ -69,12 +98,34 @@
 
     * { box-sizing: border-box; }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      white-space: nowrap;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       font-family: "Manrope", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
+        repeating-linear-gradient(
+          -32deg,
+          rgba(255, 255, 255, 0.07) 0 2px,
+          rgba(255, 255, 255, 0) 2px 11px
+        ),
+        repeating-linear-gradient(
+          38deg,
+          rgba(12, 89, 122, 0.045) 0 1px,
+          rgba(12, 89, 122, 0) 1px 9px
+        ),
         radial-gradient(circle at 15% 8%, rgba(125, 200, 231, 0.45), transparent 25%),
         radial-gradient(circle at 88% 16%, rgba(15, 134, 185, 0.2), transparent 26%),
         linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
@@ -467,6 +518,7 @@
 </head>
 <body>
   <main class="app">
+    <h1 class="sr-only">Simple Tides - Map-First NOAA Tide Forecasts and Marine Conditions</h1>
     <header class="topbar">
       <div class="brand">
         <span class="icon" aria-hidden="true">
@@ -1452,7 +1504,7 @@
     }
 
     async function bootstrap() {
-      let initialTheme = "light";
+      let initialTheme = "dark";
       try {
         const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
         if (savedTheme === "dark" || savedTheme === "light") {
