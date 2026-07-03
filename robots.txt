@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Keep sitemap discoverable for search engines.
+Sitemap: https://simple-tides.com/sitemap.xml
