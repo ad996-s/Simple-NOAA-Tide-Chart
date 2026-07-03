@@ -509,6 +509,8 @@
       "waterlevelsandmet"
     ];
 
+    const THEME_STORAGE_KEY = "simpleTidesTheme";
+
     const state = {
       map: null,
       baseLayer: null,
@@ -602,6 +604,11 @@
       state.theme = theme;
       document.documentElement.setAttribute("data-theme", theme);
       themeBtnEl.textContent = theme === "dark" ? "Light" : "Dark";
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+      } catch {
+        // Ignore storage errors in private browsing or restricted contexts.
+      }
       if (state.map) {
         applyMapThemeLayers(theme);
       }
@@ -768,6 +775,15 @@
         });
     }
 
+    function applyUserLocation(pos, options = {}) {
+      const { animate = true, zoom = 10 } = options;
+      state.userLocation = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+      state.userMarker.setLatLng([state.userLocation.lat, state.userLocation.lon]);
+      state.radiusCircle.setLatLng([state.userLocation.lat, state.userLocation.lon]);
+      state.map.setView([state.userLocation.lat, state.userLocation.lon], zoom, { animate });
+      renderMarkersInRadius();
+    }
+
     function getCurrentPositionWithOptions(options) {
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -822,6 +838,17 @@
           timeout: 10000,
           maximumAge: 300000
         });
+      }
+    }
+
+    async function promptForLocationOnStartup() {
+      mapStatusEl.textContent = "Requesting your location...";
+      try {
+        const pos = await requestUserLocation();
+        applyUserLocation(pos, { animate: false, zoom: 10 });
+        mapStatusEl.textContent = "Using your current location.";
+      } catch {
+        mapStatusEl.textContent = "Location not granted. Using default map center.";
       }
     }
 
@@ -1344,11 +1371,7 @@
 
         try {
           const pos = await requestUserLocation();
-          state.userLocation = { lat: pos.coords.latitude, lon: pos.coords.longitude };
-          state.userMarker.setLatLng([state.userLocation.lat, state.userLocation.lon]);
-          state.radiusCircle.setLatLng([state.userLocation.lat, state.userLocation.lon]);
-          state.map.setView([state.userLocation.lat, state.userLocation.lon], 10, { animate: true });
-          renderMarkersInRadius();
+          applyUserLocation(pos, { animate: true, zoom: 10 });
         } catch (err) {
           mapStatusEl.textContent = geolocationErrorMessage(err);
         } finally {
@@ -1406,9 +1429,20 @@
     }
 
     async function bootstrap() {
-      applyTheme("light");
+      let initialTheme = "light";
+      try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme === "dark" || savedTheme === "light") {
+          initialTheme = savedTheme;
+        }
+      } catch {
+        // Ignore storage errors and fall back to light.
+      }
+
+      applyTheme(initialTheme);
       initMap();
       wireControls();
+      await promptForLocationOnStartup();
       await loadStationDirectory();
     }
 
