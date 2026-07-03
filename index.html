@@ -514,6 +514,8 @@
       baseLayer: null,
       labelLayer: null,
       stations: [],
+      tideDataAvailability: new Map(),
+      pendingTideChecks: new Set(),
       markerLayer: null,
       userMarker: null,
       radiusCircle: null,
@@ -682,13 +684,39 @@
       if (!state.map || !state.markerLayer) { return; }
       const center = state.map.getCenter();
       const radius = state.radiusMiles;
+      const checksPerPass = 28;
 
       state.markerLayer.clearLayers();
       let shown = 0;
+      let checksStarted = 0;
+      const candidates = [];
 
       for (const station of state.stations) {
         const dist = haversineMiles(center.lat, center.lng, station.lat, station.lon);
         if (dist > radius) { continue; }
+
+        candidates.push({ station, dist });
+      }
+
+      candidates.sort((a, b) => a.dist - b.dist);
+
+      for (const candidate of candidates) {
+        const { station, dist } = candidate;
+        const stationID = station.noaaStationID;
+        const hasData = state.tideDataAvailability.get(stationID);
+
+        if (hasData === false) {
+          continue;
+        }
+
+        if (hasData !== true) {
+          if (checksStarted < checksPerPass) {
+            scheduleTideAvailabilityCheck(station);
+            checksStarted += 1;
+          }
+          continue;
+        }
+
         if (shown >= 900) { break; }
 
         shown += 1;
@@ -701,13 +729,43 @@
       }
 
       stationCountEl.textContent = `Stations ${shown}`;
-      updateMapStatus();
+      if (shown === 0 && (state.pendingTideChecks.size > 0 || checksStarted > 0)) {
+        mapStatusEl.textContent = "Checking nearby stations for tide chart data...";
+      } else {
+        updateMapStatus();
+      }
     }
 
     function updateMapStatus() {
       if (!state.map) { return; }
       const center = state.map.getCenter();
       mapStatusEl.textContent = `Hybrid view | radius ${state.radiusMiles} mi | center ${center.lat.toFixed(3)}, ${center.lng.toFixed(3)}`;
+    }
+
+    async function stationHasTideData(stationID) {
+      try {
+        const tides = await fetchUpcomingTides(stationID);
+        return Array.isArray(tides) && tides.length >= 2;
+      } catch {
+        return false;
+      }
+    }
+
+    function scheduleTideAvailabilityCheck(station) {
+      const stationID = station.noaaStationID;
+      if (!stationID || state.tideDataAvailability.has(stationID) || state.pendingTideChecks.has(stationID)) {
+        return;
+      }
+
+      state.pendingTideChecks.add(stationID);
+      stationHasTideData(stationID)
+        .then((hasData) => {
+          state.tideDataAvailability.set(stationID, hasData);
+        })
+        .finally(() => {
+          state.pendingTideChecks.delete(stationID);
+          renderMarkersInRadius();
+        });
     }
 
     function getCurrentPositionWithOptions(options) {
@@ -1249,6 +1307,13 @@
       detailLoading(station);
       try {
         const data = await fetchStationData(station);
+        if (!Array.isArray(data.tides) || data.tides.length < 2) {
+          state.tideDataAvailability.set(station.noaaStationID, false);
+          renderMarkersInRadius();
+          detailEl.innerHTML = `<div class="status">${station.name} has no tide chart data available right now. Try a nearby station.</div>`;
+          return;
+        }
+        state.tideDataAvailability.set(station.noaaStationID, true);
         updateDetail(station, data);
       } catch (error) {
         detailEl.innerHTML = `<div class="status">Unable to refresh station data right now. ${String(error.message || "")}</div>`;
