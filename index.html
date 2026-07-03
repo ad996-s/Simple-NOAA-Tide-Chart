@@ -14,6 +14,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Simple Tides">
   <meta name="twitter:description" content="Map-first tide forecasts with NOAA stations, weather, marine conditions, and lunar/light insights.">
+  <link rel="canonical" href="https://simple-tides.com/">
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d15c27f720104938aaf37d7300812e5b"}'></script><!-- End Cloudflare Web Analytics -->
   <script type="application/ld+json">
     {
@@ -437,6 +438,24 @@
       font-weight: 700;
     }
 
+    .footer-links {
+      margin-top: 6px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 11px;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 960px) {
       .topbar { flex-wrap: wrap; border-radius: 16px; }
       .layout { grid-template-rows: 56vh auto; }
@@ -495,6 +514,10 @@
 
     <footer class="privacy-policy" aria-label="Privacy policy">
       <strong>Privacy Policy:</strong> Simple Tides uses your browser location only to center the map and estimate distance/time to stations. Data is requested from NOAA, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense only when needed to show tides, weather, and solunar details. No account is required, and no personal data is sold.
+      <div class="footer-links">
+        <a href="/privacy.html">Full Privacy Policy</a>
+        <a href="/about.html">About Simple Tides</a>
+      </div>
     </footer>
   </main>
 
