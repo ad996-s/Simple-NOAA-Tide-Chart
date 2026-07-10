@@ -547,7 +547,6 @@
         <div id="map"></div>
         <div class="map-overlay">
           <div class="group">
-            <span class="map-tag">Hybrid</span>
             <select id="radiusSelect" class="chip-select" aria-label="Radius">
               <option value="5">5 mi radius</option>
               <option value="10" selected>10 mi radius</option>
@@ -825,7 +824,7 @@
     function updateMapStatus() {
       if (!state.map) { return; }
       const center = state.map.getCenter();
-      mapStatusEl.textContent = `Hybrid view | radius ${state.radiusMiles} mi | center ${center.lat.toFixed(3)}, ${center.lng.toFixed(3)}`;
+      mapStatusEl.textContent = `Radius ${state.radiusMiles} mi | Center ${center.lat.toFixed(3)}, ${center.lng.toFixed(3)}`;
     }
 
     async function stationHasTideData(stationID) {
