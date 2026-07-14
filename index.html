@@ -14,6 +14,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-4966856858087366">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#dff5fc">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c1723">
   <meta property="og:type" content="website">
@@ -30,6 +31,8 @@
   <link rel="alternate" hreflang="x-default" href="https://simple-tides.com/">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://simple-tides.com/sitemap.xml">
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d15c27f720104938aaf37d7300812e5b"}'></script><!-- End Cloudflare Web Analytics -->
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4966856858087366" crossorigin="anonymous"></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -477,6 +480,85 @@
       font-weight: 600;
     }
 
+    .about-strip {
+      margin-top: 4px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+    }
+
+    .about-strip h2 {
+      margin: 0 0 8px;
+      font-family: "Sora", "Manrope", sans-serif;
+      font-size: 15px;
+    }
+
+    .about-strip p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .about-strip p:last-child { margin-bottom: 0; }
+
+    .about-strip a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .about-strip a:hover { text-decoration: underline; }
+
+    .cookie-banner {
+      display: none;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 999;
+      max-width: 640px;
+      margin: 0 auto;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .cookie-banner p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink);
+      flex: 1 1 260px;
+    }
+
+    .cookie-actions { display: flex; gap: 8px; }
+
+    .cookie-actions button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .cookie-actions button.ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+
     .privacy-policy {
       margin-top: 4px;
       border: 1px solid var(--line);
@@ -567,14 +649,34 @@
       </section>
     </section>
 
+    <section class="about-strip" aria-label="About Simple Tides">
+      <h2>What Simple Tides does</h2>
+      <p>Simple Tides is a free, map-first tool for finding nearby NOAA tide stations and seeing their upcoming tides, weather, marine conditions, and solunar activity in one place. Pick a station on the map to pull up a tide chart, a high/low timeline, and a <a href="/smart-bite-score.html">Smart Bite Score</a> that combines tide movement, <a href="/solunar-theory.html">solunar activity</a>, moon phase, and weather into one quick read. New to tide charts or NOAA stations? Start with our <a href="/guide-tide-charts.html">guide to reading a tide chart</a> or our <a href="/guide-noaa-stations.html">guide to NOAA station types</a>.</p>
+      <p>Data comes from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense &mdash; see the full breakdown on the <a href="/about.html">About page</a>, or check the <a href="/faq.html">FAQ</a> for quick answers.</p>
+    </section>
+
     <footer class="privacy-policy" aria-label="Privacy policy">
       <strong>Privacy Policy:</strong> Simple Tides uses your browser location only to center the map and estimate distance/time to stations. Data is requested from NOAA, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense only when needed to show tides, weather, and solunar details. No account is required, and no personal data is sold.
       <div class="footer-links">
         <a href="/privacy.html">Full Privacy Policy</a>
-        <a href="/about.html">About Simple Tides</a>
+        <a href="/about.html">About</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/guide-tide-charts.html">Tide Chart Guide</a>
+        <a href="/guide-noaa-stations.html">NOAA Station Guide</a>
+        <a href="/smart-bite-score.html">Bite Score</a>
+        <a href="/solunar-theory.html">Solunar Theory</a>
+        <a href="/contact.html">Contact</a>
       </div>
     </footer>
   </main>
+
+  <div id="cookieConsent" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p>Simple Tides uses cookies for basic analytics and to support the ads that keep this tool free. See our <a href="/privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-actions">
+      <button type="button" id="cookieAccept">Accept</button>
+      <button type="button" id="cookieDecline" class="ghost">Decline</button>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
@@ -1506,6 +1608,29 @@
       });
     }
 
+    function wireCookieConsent() {
+      const KEY = "simpleTidesCookieConsent";
+      const banner = document.getElementById("cookieConsent");
+      if (!banner) { return; }
+      let saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+      if (!saved) { banner.style.display = "flex"; }
+      const accept = document.getElementById("cookieAccept");
+      const decline = document.getElementById("cookieDecline");
+      if (accept) {
+        accept.addEventListener("click", () => {
+          try { localStorage.setItem(KEY, "accepted"); } catch (e) {}
+          banner.style.display = "none";
+        });
+      }
+      if (decline) {
+        decline.addEventListener("click", () => {
+          try { localStorage.setItem(KEY, "declined"); } catch (e) {}
+          banner.style.display = "none";
+        });
+      }
+    }
+
     async function bootstrap() {
       let initialTheme = "dark";
       try {
@@ -1520,6 +1645,7 @@
       applyTheme(initialTheme);
       initMap();
       wireControls();
+      wireCookieConsent();
       await promptForLocationOnStartup();
       await loadStationDirectory();
     }

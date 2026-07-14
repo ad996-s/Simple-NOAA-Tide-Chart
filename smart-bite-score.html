@@ -3,39 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | Simple Tides</title>
+  <title>How the Smart Bite Score Works | Simple Tides</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="description" content="Read the Simple Tides privacy policy, including location usage, third-party API requests, cookies, ads, and data handling details.">
+  <meta name="description" content="How Simple Tides calculates its Smart Bite Score from tide movement, solunar activity, moon phase, and weather conditions.">
   <meta name="author" content="Simple Tides">
   <meta name="application-name" content="Simple Tides">
   <meta name="google-adsense-account" content="ca-pub-4966856858087366">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Privacy Policy | Simple Tides">
-  <meta property="og:description" content="How Simple Tides handles browser location, third-party API requests, cookies, ads, and privacy.">
-  <meta property="og:url" content="https://simple-tides.com/privacy.html">
+  <meta property="og:title" content="How the Smart Bite Score Works | Simple Tides">
+  <meta property="og:description" content="A look at how the Smart Bite Score combines tide, solunar, moon, and weather data into one rating.">
+  <meta property="og:url" content="https://simple-tides.com/smart-bite-score.html">
   <meta property="og:site_name" content="Simple Tides">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Privacy Policy | Simple Tides">
-  <meta name="twitter:description" content="How Simple Tides handles browser location, third-party API requests, cookies, ads, and privacy.">
-  <link rel="canonical" href="https://simple-tides.com/privacy.html">
-  <link rel="alternate" hreflang="en" href="https://simple-tides.com/privacy.html">
-  <link rel="alternate" hreflang="x-default" href="https://simple-tides.com/privacy.html">
+  <meta name="twitter:title" content="How the Smart Bite Score Works | Simple Tides">
+  <meta name="twitter:description" content="A look at how the Smart Bite Score combines tide, solunar, moon, and weather data into one rating.">
+  <link rel="canonical" href="https://simple-tides.com/smart-bite-score.html">
+  <link rel="alternate" hreflang="en" href="https://simple-tides.com/smart-bite-score.html">
+  <link rel="alternate" hreflang="x-default" href="https://simple-tides.com/smart-bite-score.html">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4966856858087366" crossorigin="anonymous"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Privacy Policy | Simple Tides",
-  "url": "https://simple-tides.com/privacy.html",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Simple Tides",
-    "url": "https://simple-tides.com/"
+  "@type": "Article",
+  "headline": "How the Smart Bite Score Works",
+  "description": "How Simple Tides calculates its Smart Bite Score.",
+  "url": "https://simple-tides.com/smart-bite-score.html",
+  "author": {
+    "@type": "Organization",
+    "name": "Simple Tides"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Simple Tides"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://simple-tides.com/smart-bite-score.html"
   },
   "inLanguage": "en-US"
 }
@@ -187,35 +195,35 @@
       <a href="/faq.html">FAQ</a>
       <a href="/guide-tide-charts.html">Tide Charts</a>
       <a href="/guide-noaa-stations.html">NOAA Stations</a>
-      <a href="/smart-bite-score.html">Bite Score</a>
+      <a href="/smart-bite-score.html" aria-current="page">Bite Score</a>
       <a href="/solunar-theory.html">Solunar Theory</a>
       <a href="/about.html">About</a>
       <a href="/contact.html">Contact</a>
-      <a href="/privacy.html" aria-current="page">Privacy</a>
+      <a href="/privacy.html">Privacy</a>
     </nav>
 
 
-    <h1>Simple Tides Privacy Policy</h1>
-    <p>Last updated: 2026-07-13</p>
+    <h1>How the Smart Bite Score Works</h1>
+    <p class="lede">The Smart Bite Score is a quick read on how favorable current conditions look, built from tide, solunar, moon, and weather data. It's a heuristic starting point for planning a trip &mdash; not a scientific guarantee of anything biting.</p>
 
-    <p>Simple Tides is designed to provide tide, weather, and marine information. This page explains what data is requested, how it's used, and how ads and cookies work on this site.</p>
+    <h2>What it measures</h2>
+    <p>Fish activity is influenced by many things at once. Rather than making you check four separate data sources, Simple Tides combines them into a single score and a short-label summary (for example, Slow, Fair, Good, or Excellent) so you can judge conditions at a glance, with the underlying reasons listed right below it.</p>
 
-    <h2>Location data</h2>
-    <p>If you allow location access, your browser location is used only to center the map, estimate station distance and route timing, and improve local station discovery. Location is not required to use the app, and you can search by city or station name instead.</p>
+    <h2>The inputs behind the score</h2>
+    <ul>
+      <li><strong>Tide stage and movement</strong> &mdash; from the <a href="/guide-tide-charts.html">tide chart</a> for your selected station. Periods of stronger water movement, and the runs into and out of high or low tide, are generally weighted as more active.</li>
+      <li><strong>Solunar activity</strong> &mdash; major and minor periods tied to the moon's position, explained in our <a href="/solunar-theory.html">solunar theory guide</a>.</li>
+      <li><strong>Moon phase and illumination</strong> &mdash; from FarmSense lunar data, which also feeds solunar timing.</li>
+      <li><strong>Weather conditions</strong> &mdash; general conditions and air temperature from the National Weather Service or Open-Meteo.</li>
+    </ul>
 
-    <h2>Third-party data sources</h2>
-    <p>Simple Tides requests data from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense to provide forecasts and chart details. See our <a href="/about.html">About page</a> for what each source provides.</p>
+    <h2>Reading the rationale</h2>
+    <p>Underneath the score, Simple Tides lists the specific reasons behind that trip's rating &mdash; for example, that you're near a tide change, inside a solunar major period, or under a nearly full moon. Use those bullet points to understand <em>why</em> the score is what it is, not just the number itself.</p>
 
-    <h2>Cookies and advertising</h2>
-    <p>Simple Tides shows ads through Google AdSense to keep the tool free to use. Google and its partners may use cookies to serve ads based on your visits to this and other sites. You'll see a short cookie notice on your first visit; declining does not block ads outright but limits how they're personalized. You can control ad personalization directly through <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ads Settings</a>, and learn more about how Google uses data in the <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google Partner Sites policy</a>.</p>
+    <h2>Limitations, honestly</h2>
+    <p>Solunar theory has strong anecdotal support among anglers and hunters but mixed formal scientific validation, and every species and body of water behaves a little differently. Treat the Smart Bite Score as one more input alongside local knowledge, species behavior, and water clarity &mdash; not a substitute for them.</p>
 
-    <h2>Analytics</h2>
-    <p>Site analytics (via Cloudflare Web Analytics) are used to understand aggregate traffic and improve site performance. This does not use cookies or track individuals across sites.</p>
-
-    <h2>Personal data</h2>
-    <p>No account is required. Personal data is not sold. The app does not store personal profiles.</p>
-
-    <p><a href="/">Back to Simple Tides</a> | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a></p>
+    <p>See also: <a href="/guide-tide-charts.html">how to read a tide chart</a> and <a href="/guide-noaa-stations.html">understanding NOAA stations</a>.</p>
 
 
     <footer class="page-footer">
