@@ -8,20 +8,20 @@
   <link rel="shortcut icon" href="/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="description" content="All Simple Tides guides on reading tides and planning trips: tide basics, fishing and bite timing, and activity guides for boating, paddling, and shore trips.">
+  <meta name="description" content="Every Simple Tides guide on tides, NOAA stations, fishing timing, and on-the-water activities, organized by topic.">
   <meta name="author" content="Simple Tides">
   <meta name="application-name" content="Simple Tides">
   <meta name="google-adsense-account" content="ca-pub-4966856858087366">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Guides | Simple Tides">
-  <meta property="og:description" content="Browse every Simple Tides guide on tides, fishing timing, and planning a trip on the water.">
+  <meta property="og:description" content="Browse all Simple Tides guides: tide basics, fishing and bite timing, on-the-water activities, and beach safety.">
   <meta property="og:url" content="https://simple-tides.com/guides.html">
   <meta property="og:site_name" content="Simple Tides">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Guides | Simple Tides">
-  <meta name="twitter:description" content="Browse every Simple Tides guide on tides, fishing timing, and planning a trip on the water.">
+  <meta name="twitter:description" content="Browse all Simple Tides guides: tide basics, fishing and bite timing, on-the-water activities, and beach safety.">
   <link rel="canonical" href="https://simple-tides.com/guides.html">
   <link rel="alternate" hreflang="en" href="https://simple-tides.com/guides.html">
   <link rel="alternate" hreflang="x-default" href="https://simple-tides.com/guides.html">
@@ -60,6 +60,22 @@
     },
     {
       "@type": "Article",
+      "url": "https://simple-tides.com/full-moon-tide-guide.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/do-lakes-have-tides.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/tidal-bore-explained.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/highest-tides-in-the-world.html"
+    },
+    {
+      "@type": "Article",
       "url": "https://simple-tides.com/smart-bite-score.html"
     },
     {
@@ -84,7 +100,15 @@
     },
     {
       "@type": "Article",
+      "url": "https://simple-tides.com/surfing-tide-guide.html"
+    },
+    {
+      "@type": "Article",
       "url": "https://simple-tides.com/clamming-tide-guide.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/crabbing-tide-guide.html"
     },
     {
       "@type": "Article",
@@ -96,7 +120,31 @@
     },
     {
       "@type": "Article",
+      "url": "https://simple-tides.com/scuba-diving-tide-guide.html"
+    },
+    {
+      "@type": "Article",
       "url": "https://simple-tides.com/boat-ramp-tide-timing.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/metal-detecting-beach-tides.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/rip-current-safety.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/sneaker-waves-tide-safety.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/storm-surge-vs-tide.html"
+    },
+    {
+      "@type": "Article",
+      "url": "https://simple-tides.com/red-tide-explained.html"
     }
   ],
   "inLanguage": "en-US"
@@ -161,8 +209,12 @@
     .site-nav a { font-size: 14px; font-weight: 600; }
     .site-nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; }
 
-    .crumbs { font-size: 13px; color: var(--ink-soft); margin: -6px 0 18px; }
-    .crumbs a { font-weight: 600; }
+    .crumbs {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin: -6px 0 14px;
+    }
+    .crumbs a { color: var(--ink-soft); font-weight: 600; }
 
     h1 { margin-top: 0; }
     h2 { margin-top: 32px; }
@@ -185,7 +237,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 12px;
-      margin: 14px 0 6px;
+      margin: 16px 0 8px;
       padding: 0;
       list-style: none;
     }
@@ -203,6 +255,14 @@
 
     .faq-item { margin: 0 0 22px; }
     .faq-item h2 { margin: 0 0 6px; font-size: 18px; }
+
+    dl.glossary dt {
+      font-weight: 800;
+      color: var(--ink);
+      margin-top: 16px;
+      font-family: "Sora", "Manrope", sans-serif;
+    }
+    dl.glossary dd { margin: 4px 0 0; }
 
     footer.page-footer {
       margin-top: 34px;
@@ -264,7 +324,6 @@
 
     <h1>Guides</h1>
     <p class="lede">Everything Simple Tides has written about reading tides and putting them to use on the water, organized by topic.</p>
-
     <div class="hub-section">
       <h2>Tide Basics</h2>
       <p class="hub-intro">Start here if you're new to tide charts and NOAA data.</p>
@@ -276,10 +335,19 @@
         <li><a href="/king-tides-explained.html">What Is a King Tide?</a><p>The highest tides of the year, and why they can flood low areas.</p></li>
       </ul>
     </div>
-
     <div class="hub-section">
-      <h2>Fishing &amp; Bite Timing</h2>
-      <p class="hub-intro">How Simple Tides' Smart Bite Score works, and the reasoning behind it.</p>
+      <h2>Tide Phenomena & Records</h2>
+      <p class="hub-intro">The bigger, stranger side of tide science.</p>
+      <ul class="guide-grid">
+        <li><a href="/full-moon-tide-guide.html">Full Moon Tides</a><p>Why the moon's phase drives the biggest swings in tide range.</p></li>
+        <li><a href="/do-lakes-have-tides.html">Do Lakes Have Tides?</a><p>Why lake tides are nearly invisible, and what a seiche is.</p></li>
+        <li><a href="/tidal-bore-explained.html">What Is a Tidal Bore?</a><p>When an incoming tide becomes a wave you can surf upriver.</p></li>
+        <li><a href="/highest-tides-in-the-world.html">Highest Tides in the World</a><p>Inside the Bay of Fundy and the physics of extreme tidal range.</p></li>
+      </ul>
+    </div>
+    <div class="hub-section">
+      <h2>Fishing & Bite Timing</h2>
+      <p class="hub-intro">How the Smart Bite Score works, and the reasoning behind it.</p>
       <ul class="guide-grid">
         <li><a href="/smart-bite-score.html">How the Smart Bite Score Works</a><p>The four inputs behind the score, and its limits.</p></li>
         <li><a href="/best-time-to-fish-tides.html">Best Tides for Fishing</a><p>Why moving water matters more than tide height.</p></li>
@@ -288,21 +356,32 @@
         <li><a href="/barometric-pressure-fish-behavior.html">Barometric Pressure and Fish Behavior</a><p>What the pressure-and-bite theory actually says.</p></li>
       </ul>
     </div>
-
     <div class="hub-section">
       <h2>On the Water</h2>
       <p class="hub-intro">Activity-specific guides for timing a trip around the tide.</p>
       <ul class="guide-grid">
         <li><a href="/surf-fishing-tide-guide.html">Surf Fishing and Tides</a><p>Scouting sandbars at low tide, fishing the incoming push.</p></li>
+        <li><a href="/surfing-tide-guide.html">Best Tide for Surfing</a><p>How tide stage changes wave shape and quality.</p></li>
         <li><a href="/clamming-tide-guide.html">Clamming and Tides</a><p>Why bigger tides expose more flat, and how to time your dig.</p></li>
+        <li><a href="/crabbing-tide-guide.html">Crabbing and Tides</a><p>When to drop a trap based on tide movement.</p></li>
         <li><a href="/tide-pooling-guide.html">Tide Pooling: Finding the Best Low Tides</a><p>Aiming for the lowest tides of the month, safely.</p></li>
         <li><a href="/kayaking-tides-currents.html">Kayaking and Paddleboarding: Tides and Currents</a><p>Planning routes around slack water and tidal current.</p></li>
+        <li><a href="/scuba-diving-tide-guide.html">Scuba Diving and Tides</a><p>Planning dives around slack water and current.</p></li>
         <li><a href="/boat-ramp-tide-timing.html">Timing a Boat Launch Around the Tide</a><p>Avoiding a ramp that's too shallow to use.</p></li>
+        <li><a href="/metal-detecting-beach-tides.html">Metal Detecting the Beach</a><p>Why low tide exposes the best-hunting sand.</p></li>
       </ul>
     </div>
-
+    <div class="hub-section">
+      <h2>Beach & Ocean Safety</h2>
+      <p class="hub-intro">What to know before you get near the water.</p>
+      <ul class="guide-grid">
+        <li><a href="/rip-current-safety.html">Rip Currents and Tides</a><p>How to spot one, and exactly what to do if you're caught.</p></li>
+        <li><a href="/sneaker-waves-tide-safety.html">Sneaker Waves Explained</a><p>Why the ocean can surprise you at any tide.</p></li>
+        <li><a href="/storm-surge-vs-tide.html">Storm Surge vs. Tide vs. Sea Level Rise</a><p>Three different things that combine into the worst flooding.</p></li>
+        <li><a href="/red-tide-explained.html">What Is Red Tide?</a><p>What causes it, and how to check before you go.</p></li>
+      </ul>
+    </div>
     <p>Have a topic you'd like covered? <a href="/contact.html">Let us know</a>.</p>
-
 
     <footer class="page-footer">
       <p><a href="/">&larr; Back to the tide map</a> &nbsp;|&nbsp; <a href="/guides.html">All guides</a></p>
