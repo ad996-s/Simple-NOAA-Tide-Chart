@@ -1394,7 +1394,7 @@
             <div class="timeline-row">
               <span class="pill ${t.type}">${t.type.toUpperCase()}</span>
               <span>${t.type === "high" ? "High tide" : "Low tide"}</span>
-              <strong>${formatShortTime(t.timestamp)}</strong>
+              <strong>${t.height.toFixed(1)} ft @ ${formatShortTime(t.timestamp)}</strong>
             </div>
           `).join("")
         : `<div class="status">No upcoming high or low tides found.</div>`;
