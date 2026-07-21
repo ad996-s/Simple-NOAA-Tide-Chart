@@ -652,6 +652,7 @@
     <section class="about-strip" aria-label="About Simple Tides">
       <h2>What Simple Tides does</h2>
       <p>Simple Tides is a free, map-first tool for finding nearby NOAA tide stations and seeing their upcoming tides, weather, marine conditions, and solunar activity in one place. Pick a station on the map to pull up a tide chart, a high/low timeline, and a <a href="/smart-bite-score.html">Smart Bite Score</a> that combines tide movement, <a href="/solunar-theory.html">solunar activity</a>, moon phase, and weather into one quick read. New to tide charts or NOAA stations? Start with our <a href="/guide-tide-charts.html">guide to reading a tide chart</a> or browse the full <a href="/guides.html">guide library</a> &mdash; fishing timing, clamming, tide pooling, kayaking, and more.</p>
+      <p>Tide patterns vary a lot by coastline &mdash; see how, in our regional guides for <a href="/tides-new-england.html">New England</a>, the <a href="/tides-mid-atlantic.html">Mid-Atlantic</a>, the <a href="/tides-gulf-coast.html">Gulf Coast</a>, the <a href="/tides-pacific-northwest.html">Pacific Northwest</a>, and more on the <a href="/guides.html">guides page</a>.</p>
       <p>Data comes from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense &mdash; see the full breakdown on the <a href="/about.html">About page</a>, or check the <a href="/faq.html">FAQ</a> for quick answers.</p>
     </section>
 
@@ -1394,7 +1395,7 @@
             <div class="timeline-row">
               <span class="pill ${t.type}">${t.type.toUpperCase()}</span>
               <span>${t.type === "high" ? "High tide" : "Low tide"}</span>
-              <strong>${t.height.toFixed(1)} ft @ ${formatShortTime(t.timestamp)}</strong>
+              <strong>${formatShortTime(t.timestamp)}</strong>
             </div>
           `).join("")
         : `<div class="status">No upcoming high or low tides found.</div>`;
