@@ -197,6 +197,15 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+    .brand .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: block;
+      object-fit: cover;
+      object-position: 0% 50%;
+      box-shadow: 0 2px 8px rgba(14, 62, 88, 0.25);
+    }
 
     .search {
       flex: 1;
@@ -666,12 +675,7 @@
     <h1 class="sr-only">Simple Tides - Map-First NOAA Tide Forecasts and Marine Conditions</h1>
     <header class="topbar">
       <div class="brand">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" role="img" aria-label="Simple Tides logo">
-            <path d="M2.5 15.5c2.2 0 3.1-1.6 5.3-1.6s3.1 1.6 5.3 1.6 3.1-1.6 5.3-1.6 3.1 1.6 5.3 1.6" />
-            <path d="M2.5 11c2.2 0 3.1-1.6 5.3-1.6s3.1 1.6 5.3 1.6 3.1-1.6 5.3-1.6 3.1 1.6 5.3 1.6" />
-          </svg>
-        </span>
+        <img class="brand-logo" src="/IMG_0310.jpeg" alt="Simple Tides logo" width="34" height="34" />
         <span>Simple Tides</span>
       </div>
       <div class="search">
