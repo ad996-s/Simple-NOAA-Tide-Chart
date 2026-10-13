@@ -518,6 +518,59 @@
     }
 
     .about-strip a:hover { text-decoration: underline; }
+    .gear-strip {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+    }
+    .gear-strip h2 {
+      margin: 0 0 4px;
+      font-family: "Sora", "Manrope", sans-serif;
+      font-size: 15px;
+    }
+    .gear-strip .sub {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 10px;
+    }
+    .gear-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: var(--surface-strong);
+    }
+    .gear-card a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .gear-card a:hover { text-decoration: underline; }
+    .gear-card p {
+      margin: 4px 0 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+    }
+    .gear-strip .disclosure {
+      margin: 10px 0 0;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+    .ad-slot {
+      margin: 12px 0 0;
+      text-align: center;
+      min-height: 100px;
+    }
 
     .cookie-banner {
       display: none;
@@ -661,6 +714,29 @@
       <p>Tide patterns vary a lot by coastline &mdash; explore our regional tide guides for <a href="/tides-new-england.html">New England</a>, the <a href="/tides-mid-atlantic.html">Mid-Atlantic</a>, the <a href="/tides-southeast-atlantic.html">Southeast Atlantic</a>, <a href="/tides-chesapeake-bay.html">Chesapeake Bay</a>, the <a href="/tides-gulf-coast.html">Gulf Coast</a>, <a href="/tides-texas.html">Texas</a>, <a href="/tides-puerto-rico-caribbean.html">Puerto Rico &amp; the Caribbean</a>, <a href="/tides-southern-california.html">Southern California</a>, the <a href="/tides-pacific-northwest.html">Pacific Northwest</a>, <a href="/tides-alaska.html">Alaska</a>, <a href="/tides-hawaii.html">Hawaii</a>, and the <a href="/tides-great-lakes.html">Great Lakes</a>, plus more in the <a href="/guides.html">guide library</a>.</p>
       <p>Data comes from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense &mdash; see the full breakdown on the <a href="/about.html">About page</a>, or check the <a href="/faq.html">FAQ</a> for quick answers.</p>
     </section>
+
+    <section class="gear-strip" aria-label="Fishing and boating gear guides">
+      <h2>Gear up for the tide</h2>
+      <p class="sub">Hand-picked gear for fishing, crabbing, kayaking, and boating &mdash; chosen for tidal water.</p>
+      <div class="gear-grid">
+        <div class="gear-card"><a href="/tide-fishing-gear.html">Tide Fishing Gear</a><p>Rods, reels, and tackle for fishing moving water.</p></div>
+        <div class="gear-card"><a href="/surf-fishing-gear.html">Surf Fishing Gear</a><p>Long rods, sand spikes, and beach essentials.</p></div>
+        <div class="gear-card"><a href="/kayak-fishing-gear.html">Kayak Fishing Gear</a><p>The tide-smart kayak kit: PFD, trolley, safety.</p></div>
+        <div class="gear-card"><a href="/crabbing-gear-guide.html">Crabbing Gear Guide</a><p>Traps, rings, and everything for blue crabs.</p></div>
+        <div class="gear-card"><a href="/tide-watches-gear.html">Tide Watches &amp; Clocks</a><p>Keep the tide's schedule on your wrist or wall.</p></div>
+        <div class="gear-card"><a href="/boating-safety-gear.html">Boating Safety Gear</a><p>PFDs, VHF radio, flares, and the ditch kit.</p></div>
+      </div>
+      <p class="disclosure">As an Amazon Associate Simple Tides earns from qualifying purchases.</p>
+    </section>
+
+    <div class="ad-slot" aria-label="Advertisement">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-4966856858087366"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <footer class="privacy-policy" aria-label="Privacy policy">
       <strong>Privacy Policy:</strong> Simple Tides uses your browser location only to center the map and estimate distance/time to stations. Data is requested from NOAA, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense only when needed to show tides, weather, and solunar details. No account is required, and no personal data is sold.
