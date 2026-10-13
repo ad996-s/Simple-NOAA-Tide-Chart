@@ -527,7 +527,7 @@
     }
 
     .about-strip a:hover { text-decoration: underline; }
-    .gear-strip {
+    .deals-strip {
       margin-top: 12px;
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -536,41 +536,60 @@
       box-shadow: var(--shadow);
       padding: 14px 16px;
     }
-    .gear-strip h2 {
+    .deals-strip h2 {
       margin: 0 0 4px;
       font-family: "Sora", "Manrope", sans-serif;
       font-size: 15px;
     }
-    .gear-strip .sub {
+    .deals-strip .sub {
       margin: 0 0 10px;
       font-size: 12px;
       color: var(--ink-soft);
     }
-    .gear-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 10px;
+    .deals-banner {
+      display: block;
+      margin: 0 0 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0f86b9, #0a5f86);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      text-align: center;
     }
-    .gear-card {
+    .deals-banner:hover { filter: brightness(1.08); }
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .deal-card {
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 10px 12px;
+      overflow: hidden;
       background: var(--surface-strong);
+      display: flex;
+      flex-direction: column;
     }
-    .gear-card a {
-      color: var(--accent);
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 13px;
+    .deal-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      background: var(--line);
     }
-    .gear-card a:hover { text-decoration: underline; }
-    .gear-card p {
-      margin: 4px 0 0;
-      font-size: 12px;
-      line-height: 1.45;
-      color: var(--ink-soft);
-    }
-    .gear-strip .disclosure {
+    .deal-body { padding: 10px 12px 12px; display: flex; flex-direction: column; flex: 1; }
+    .deal-body h3 { margin: 0 0 6px; font-size: 14px; font-family: "Sora", "Manrope", sans-serif; }
+    .deal-body ul { list-style: none; margin: 0 0 8px; padding: 0; }
+    .deal-body li { font-size: 12.5px; margin: 0 0 5px; line-height: 1.4; }
+    .deal-body li a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .deal-body li a:hover { text-decoration: underline; }
+    .deal-body .picks-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin: 0 0 4px; }
+    .deal-links { margin-top: auto; font-size: 12px; display: flex; gap: 10px; }
+    .deal-links a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .deal-links a:hover { text-decoration: underline; }
+    .deals-strip .disclosure, .deals-strip .photo-credit {
       margin: 10px 0 0;
       font-size: 11px;
       color: var(--ink-soft);
@@ -719,18 +738,86 @@
       <p>Data comes from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense &mdash; see the full breakdown on the <a href="/about.html">About page</a>, or check the <a href="/faq.html">FAQ</a> for quick answers.</p>
     </section>
 
-    <section class="gear-strip" aria-label="Fishing and boating gear guides">
-      <h2>Gear up for the tide</h2>
-      <p class="sub">Hand-picked gear for fishing, crabbing, kayaking, and boating &mdash; chosen for tidal water.</p>
-      <div class="gear-grid">
-        <div class="gear-card"><a href="/tide-fishing-gear.html">Tide Fishing Gear</a><p>Rods, reels, and tackle for fishing moving water.</p></div>
-        <div class="gear-card"><a href="/surf-fishing-gear.html">Surf Fishing Gear</a><p>Long rods, sand spikes, and beach essentials.</p></div>
-        <div class="gear-card"><a href="/kayak-fishing-gear.html">Kayak Fishing Gear</a><p>The tide-smart kayak kit: PFD, trolley, safety.</p></div>
-        <div class="gear-card"><a href="/crabbing-gear-guide.html">Crabbing Gear Guide</a><p>Traps, rings, and everything for blue crabs.</p></div>
-        <div class="gear-card"><a href="/tide-watches-gear.html">Tide Watches &amp; Clocks</a><p>Keep the tide's schedule on your wrist or wall.</p></div>
-        <div class="gear-card"><a href="/boating-safety-gear.html">Boating Safety Gear</a><p>PFDs, VHF radio, flares, and the ditch kit.</p></div>
+    <section class="deals-strip" aria-label="Recommended gear and deals">
+      <h2>Top gear picks &amp; deals</h2>
+      <p class="sub">Hand-picked for tidal water &mdash; tap a pick to see live prices on Amazon, or open the full guide.</p>
+      <a class="deals-banner" href="https://www.amazon.com/gp/goldbox?tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">&#127907; Today&apos;s deals on Amazon &mdash; fishing, boating &amp; outdoors</a>
+      <div class="deals-grid">
+      <article class="deal-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Fishing_reel_2025_G1.jpg/330px-Fishing_reel_2025_G1.jpg" alt="Spinning reel close-up" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Tide Fishing</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=penn+battle+iii+spinning+reel&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Penn Battle III spinning reel</a></li>
+          <li><a href="https://www.amazon.com/s?k=berkley+gulp+saltwater+fishing+baits&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Berkley Gulp! saltwater baits</a></li>
+          </ul>
+          <p class="deal-links"><a href="/tide-fishing-gear.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=tide+fishing+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
+      <article class="deal-card">
+        <img src="https://p1.hippopx.com/preview/150/549/123/surf-fisherman-fishing-surf-sport.jpg" alt="Surf fisherman on the beach" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Surf Fishing</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=penn+prevail+ii+surf+rod&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Penn Prevail II surf rod</a></li>
+          <li><a href="https://www.amazon.com/s?k=surf+fishing+sand+spike+rod+holder&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Sand spike rod holder</a></li>
+          </ul>
+          <p class="deal-links"><a href="/surf-fishing-gear.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=surf+fishing+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
+      <article class="deal-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Kayak-Valdes-BC.jpg/500px-Kayak-Valdes-BC.jpg" alt="Kayak on the water" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Kayak Fishing</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=lifetime+tamarack+pro+kayak&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Lifetime Tamarack Pro kayak</a></li>
+          <li><a href="https://www.amazon.com/s?k=nrs+chinook+fishing+pfd&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">NRS Chinook fishing PFD</a></li>
+          </ul>
+          <p class="deal-links"><a href="/kayak-fishing-gear.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=kayak+fishing+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
+      <article class="deal-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Blue_crab_on_market_in_Piraeus_-_Callinectes_sapidus_Rathbun_20020819-317.jpg/1280px-Blue_crab_on_market_in_Piraeus_-_Callinectes_sapidus_Rathbun_20020819-317.jpg" alt="Blue crab" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Crabbing</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=danielson+crab+trap&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Danielson crab trap</a></li>
+          <li><a href="https://www.amazon.com/s?k=promar+collapsible+crab+trap&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Promar collapsible crab trap</a></li>
+          </ul>
+          <p class="deal-links"><a href="/crabbing-gear-guide.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=crabbing+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
+      <article class="deal-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Seiko_SKA367P1.jpg" alt="Dive-style watch" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Tide Watches</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=casio+sgw-300h+tide+watch&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Casio SGW-300H tide watch</a></li>
+          <li><a href="https://www.amazon.com/s?k=rip+curl+search+gps+surf+watch&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Rip Curl Search GPS watch</a></li>
+          </ul>
+          <p class="deal-links"><a href="/tide-watches-gear.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=tide+watches+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
+      <article class="deal-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Yellow_orange_life_jackets_american_river.jpg" alt="Life jackets" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <div class="deal-body">
+          <h3>Boating Safety</h3>
+          <p class="picks-label">Top picks</p>
+          <ul>
+          <li><a href="https://www.amazon.com/s?k=onyx+inflatable+life+jacket&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Onyx inflatable life jacket</a></li>
+          <li><a href="https://www.amazon.com/s?k=standard+horizon+hx210+vhf+radio&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Standard Horizon HX210 VHF radio</a></li>
+          </ul>
+          <p class="deal-links"><a href="/boating-safety-gear.html">Full guide &rarr;</a><a href="https://www.amazon.com/s?k=boating+safety+gear&tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">Shop deals &rarr;</a></p>
+        </div>
+      </article>
       </div>
-      <p class="disclosure">As an Amazon Associate Simple Tides earns from qualifying purchases.</p>
+      <p class="disclosure">As an Amazon Associate Simple Tides earns from qualifying purchases. Prices change &mdash; check Amazon for today&apos;s price.</p>
+      <p class="photo-credit">Photos via Wikimedia Commons contributors &amp; HippoPX.</p>
     </section>
 
     <div class="ad-slot" aria-label="Advertisement">
