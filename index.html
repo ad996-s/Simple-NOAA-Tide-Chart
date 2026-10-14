@@ -1658,17 +1658,24 @@
       const line = smoothPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
       const fill = `${line} ${(width - rightPad).toFixed(1)},${chartBottom} ${leftPad},${chartBottom}`;
 
-      const tickHours = [0, 2, 4, 6, 8, 10, 12];
-      const tickLines = tickHours.map((h) => {
-        const ms = windowStart + h * 3600000;
-        const x = xAt(ms);
-        const dt = new Date(ms);
-        const label = dt.toLocaleTimeString([], { hour: "numeric" });
-        return `
+      const tickLines = (() => {
+        // Snap ticks to even hours so x-axis labels fall on clean hour boundaries
+        const first = new Date(windowStart);
+        first.setMinutes(0, 0, 0);
+        let h = first.getHours();
+        if (h % 2 !== 0) { h += 1; }
+        first.setHours(h);
+        const parts = [];
+        for (let ms = first.getTime(); ms <= windowEnd; ms += 2 * 3600000) {
+          const x = xAt(ms);
+          const label = new Date(ms).toLocaleTimeString([], { hour: "numeric" });
+          parts.push(`
           <line x1="${x.toFixed(1)}" y1="${chartBottom + 2}" x2="${x.toFixed(1)}" y2="${chartBottom + 8}" stroke="currentColor" opacity="0.45"/>
           <text x="${x.toFixed(1)}" y="${chartBottom + 24}" fill="currentColor" opacity="0.75" text-anchor="middle" font-size="11">${label}</text>
-        `;
-      }).join("");
+        `);
+        }
+        return parts.join("");
+      })();
 
       const nowX = xAt(now);
 
