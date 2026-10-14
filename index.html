@@ -245,6 +245,29 @@
     .chip-select:hover {
       transform: translateY(-1px);
     }
+    .mainnav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 10px 2px 0;
+    }
+    .mainnav a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      white-space: nowrap;
+    }
+    .mainnav a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
 
     .layout {
       display: grid;
@@ -705,6 +728,13 @@
       <button id="themeBtn" class="chip-btn" type="button">Dark</button>
       <button id="locBtn" class="chip-btn" type="button">Use My Location</button>
     </header>
+    <nav class="mainnav" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/guides.html">Fishing &amp; Tide Guides</a>
+      <a href="#deals">Gear Deals</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/about.html">About</a>
+    </nav>
 
     <section class="layout">
       <section class="map-shell" aria-label="Station map">
@@ -738,7 +768,7 @@
       <p>Data comes from NOAA CO-OPS, weather.gov, Open-Meteo, Sunrise-Sunset, and FarmSense &mdash; see the full breakdown on the <a href="/about.html">About page</a>, or check the <a href="/faq.html">FAQ</a> for quick answers.</p>
     </section>
 
-    <section class="deals-strip" aria-label="Recommended gear and deals">
+    <section class="deals-strip" id="deals" aria-label="Recommended gear and deals">
       <h2>Top gear picks &amp; deals</h2>
       <p class="sub">Hand-picked for tidal water &mdash; tap a pick to see live prices on Amazon, or open the full guide.</p>
       <a class="deals-banner" href="https://www.amazon.com/gp/goldbox?tag=ad996-20" target="_blank" rel="nofollow sponsored noopener">&#127907; Today&apos;s deals on Amazon &mdash; fishing, boating &amp; outdoors</a>
