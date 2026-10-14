@@ -285,27 +285,49 @@
     }
     .mainnav {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
+      justify-content: center;
       margin: 10px 2px 0;
     }
-    .mainnav a {
+    .nav-dropdown { position: relative; }
+    .nav-toggle {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      padding: 8px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-strong);
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 220px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface-strong);
+      box-shadow: var(--shadow);
+      padding: 6px;
+      z-index: 50;
+    }
+    .nav-menu.open { display: block; }
+    .nav-menu a {
+      display: block;
       font-size: 13px;
       font-weight: 700;
       color: var(--ink-soft);
       text-decoration: none;
-      padding: 7px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--surface);
+      padding: 10px 14px;
+      border-radius: 8px;
       white-space: nowrap;
     }
-    .mainnav a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
+    .nav-menu a:hover { color: var(--accent); background: var(--surface); }
     .nearme-strip {
       margin-top: 12px;
       border: 1px solid var(--line);
@@ -793,12 +815,39 @@
       <button id="locBtn" class="chip-btn" type="button">Use My Location</button>
     </header>
     <nav class="mainnav" aria-label="Main navigation">
-      <a href="/">Home</a>
-      <a href="/guides.html">Fishing &amp; Tide Guides</a>
-      <a href="#deals">Gear Deals</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/about.html">About</a>
+      <div class="nav-dropdown">
+        <button id="navToggle" class="nav-toggle" aria-haspopup="true" aria-expanded="false" type="button">Menu &#9662;</button>
+        <div class="nav-menu" id="navMenu" role="menu">
+          <a href="/" role="menuitem">Home</a>
+          <a href="/guides.html" role="menuitem">Fishing &amp; Tide Guides</a>
+          <a href="#deals" role="menuitem">Gear Deals</a>
+          <a href="/faq.html" role="menuitem">FAQ</a>
+          <a href="/about.html" role="menuitem">About</a>
+        </div>
+      </div>
     </nav>
+    <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('navMenu');
+      if (!toggle || !menu) return;
+      function close() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+      });
+      menu.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') close();
+      });
+    })();
+    </script>
     <section class="nearme-strip" aria-label="Find tide charts near me">
       <h2>Tide charts near me</h2>
       <p>Looking for <strong>tide charts near you</strong>? Tap <strong>Use My Location</strong> above and Simple Tides centers the map on your position, lists the nearest NOAA tide stations by distance, and shows each station&rsquo;s upcoming high and low tides, weather, marine conditions, and <a href="/smart-bite-score.html">Smart Bite Score</a>. No account, no app download &mdash; it works right in your browser, anywhere in the U.S. Prefer browsing by city? Try <a href="/tides-miami.html">Miami</a>, <a href="/tides-seattle.html">Seattle</a>, <a href="/tides-boston.html">Boston</a>, or <a href="/tides-san-diego.html">San Diego</a>.</p>
