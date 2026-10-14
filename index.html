@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Tides | Live NOAA Tide Charts & Forecasts</title>
+  <title>Tide Charts Near Me - Live NOAA Forecasts | Simple Tides</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="description" content="Simple Tides is a map-first tide app for finding nearby NOAA stations, viewing upcoming tides, weather, marine conditions, lunar/light, and bite score insights.">
+  <meta name="description" content="Find tide charts near you \u2014 Simple Tides locates nearby NOAA stations on a map with upcoming tides, weather, marine conditions, and bite scores.">
   <meta name="author" content="Simple Tides">
   <meta name="application-name" content="Simple Tides">
   <meta name="format-detection" content="telephone=no">
@@ -71,6 +71,38 @@
           "name": "Simple Tides",
           "url": "https://simple-tides.com/",
           "inLanguage": "en-US"
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I find tide charts near me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tap \u2018Use My Location\u2019 on Simple Tides and the map centers on your position, listing the nearest NOAA tide stations by distance. Select any station to see its upcoming high/low tides, weather, marine conditions, and Smart Bite Score \u2014 no account or app download needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does Simple Tides get its tide data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tide predictions come directly from NOAA CO-OPS, the official U.S. source for tide and water-level data. Weather data comes from weather.gov and Open-Meteo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Simple Tides free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Simple Tides is free \u2014 pick any station on the map to see tide charts, timelines, weather, and solunar details without signing up."
+          }
         }
       ]
     }
@@ -268,6 +300,32 @@
       border-color: var(--accent);
       transform: translateY(-1px);
     }
+    .nearme-strip {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+    }
+    .nearme-strip h2 {
+      margin: 0 0 8px;
+      font-family: "Sora", "Manrope", sans-serif;
+      font-size: 15px;
+    }
+    .nearme-strip p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .nearme-strip a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .nearme-strip a:hover { text-decoration: underline; }
 
     .layout {
       display: grid;
@@ -735,6 +793,10 @@
       <a href="/faq.html">FAQ</a>
       <a href="/about.html">About</a>
     </nav>
+    <section class="nearme-strip" aria-label="Find tide charts near me">
+      <h2>Tide charts near me</h2>
+      <p>Looking for <strong>tide charts near you</strong>? Tap <strong>Use My Location</strong> above and Simple Tides centers the map on your position, lists the nearest NOAA tide stations by distance, and shows each station&rsquo;s upcoming high and low tides, weather, marine conditions, and <a href="/smart-bite-score.html">Smart Bite Score</a>. No account, no app download &mdash; it works right in your browser, anywhere in the U.S. Prefer browsing by city? Try <a href="/tides-miami.html">Miami</a>, <a href="/tides-seattle.html">Seattle</a>, <a href="/tides-boston.html">Boston</a>, or <a href="/tides-san-diego.html">San Diego</a>.</p>
+    </section>
 
     <section class="layout">
       <section class="map-shell" aria-label="Station map">
