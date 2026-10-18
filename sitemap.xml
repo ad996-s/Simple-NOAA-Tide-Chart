@@ -649,5 +649,6 @@
     <loc>https://simple-tides.com/tides-st-john.html</loc>
     <lastmod>2026-10-18</lastmod>
   </url>
+  <url><loc>https://simple-tides.com/king-tides.html</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
 
